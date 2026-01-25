@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact | Shadow Canvas</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-brand">SHADOW CANVAS</div>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="contact.html">Contact</a>
+                <a href="artists.html">Fellow EP Artists</a>
+                <a href="login.html">Access Terminal</a>
+            </div>
+        </nav>
+    </header>
+
+    <main id="Intro">
+        <h1>Transmit Data</h1>
+        <p>Leave a message in the static.</p>
+
+        <img src="images/contact.jpg" alt="Contact Archive Header" class="contact-img">
+
+        <section>
+            <form action="#" method="POST">
+                <div>
+                    <label>Alias</label>
+                    <input type="text" name="alias" required>
+                </div>
+
+                <div>
+                    <label>Digital Address</label>
+                    <input type="email" name="email" required>
+                </div>
+
+                <div>
+                    <label>Encrypted Message</label>
+                    <textarea name="message" rows="5" required></textarea>
+                </div>
+
+                <button type="submit">UPLOAD DATA</button>
+            </form>
+        </section>
+    </main>
+
+    <audio id="bg-music" loop>
+    <source src="music/MokkaMusic-Binary-Soul-watermark.mp3" type="audio/mpeg">
+</audio>
+    <footer>
+        <p>&copy; 2026 Shadow Canvas Archive</p>
+        <p>Music: <a href="https://inaudio.org/track/binary-soul-cyberpunk/">"Binary Soul"</a> by MOKKA / InAudio</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

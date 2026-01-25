@@ -1,0 +1,9 @@
+*~
+*.bak
+*.odt~
+.directory
+.DS_Store
+
+# Don't upload project notes (keep them local)
+Project_Details.odt
+

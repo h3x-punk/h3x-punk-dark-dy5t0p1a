@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Access Terminal | Shadow Canvas</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-brand">SHADOW CANVAS</div>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="contact.html">Contact</a>
+                <a href="artists.html">Fellow EP Artists</a>
+                <a href="login.html">Access Terminal</a>
+            </div>
+        </nav>
+    </header>
+
+    <main id="login-main">
+        <section id="login-container">
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <span class="terminal-title">AUTHENTICATION REQUIRED</span>
+                    <div class="terminal-controls">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                    </div>
+                </div>
+
+                <div class="terminal-body">
+                    <p class="terminal-prompt">> SHADOW CANVAS SECURE ACCESS v2.77</p>
+                    <p class="terminal-prompt">> Initializing biometric scan...</p>
+                    <p class="terminal-prompt terminal-blink">> Enter credentials_</p>
+
+                    <form id="login-form">
+                        <div class="input-group">
+                            <label for="username">USER_ID:</label>
+                            <input type="text" id="username" name="username" placeholder="netrunner_alias" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="password">ACCESS_KEY:</label>
+                            <input type="password" id="password" name="password" placeholder="••••••••" required>
+                        </div>
+
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="remember" name="remember">
+                            <label for="remember">Store credentials in local cache</label>
+                        </div>
+
+                        <button type="submit" class="terminal-button">INITIATE ACCESS</button>
+                    </form>
+
+                    <div class="terminal-footer">
+                        <p>> <a href="#" class="terminal-link">Forgot access key?</a></p>
+                        <p>> <a href="#" class="terminal-link">Request new credentials</a></p>
+                        <p class="warning-text">⚠ Unauthorized access will be logged and traced</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <audio id="bg-music" loop>
+        <source src="music/MokkaMusic-Monsters-Within-watermark.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <footer>
+        <p>&copy; 2026 Shadow Canvas Archive</p>
+        <p>Music: <a href="https://inaudio.org/track/monsters-within-dark-synth/">"Monsters Within"</a> by MOKKA / InAudio</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

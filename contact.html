@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Contact | Shadow Canvas</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom Styles -->
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
 </head>
@@ -33,23 +36,33 @@
         <img src="images/contact.jpg" alt="Contact Archive Header" class="contact-img">
 
         <section>
-            <form action="#" method="POST">
-                <div>
-                    <label>Alias</label>
-                    <input type="text" name="alias" required>
+            <!-- Bootstrap Form with Validation -->
+            <form action="#" method="POST" class="needs-validation" novalidate>
+                <div class="mb-3">
+                    <label for="alias" class="form-label">Alias</label>
+                    <input type="text" class="form-control" id="alias" name="alias" placeholder="Enter your alias" required>
+                    <div class="invalid-feedback">
+                        Please provide an alias.
+                    </div>
                 </div>
 
-                <div>
-                    <label>Digital Address</label>
-                    <input type="email" name="email" required>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Digital Address</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="netrunner@datasphere.net" required>
+                    <div class="invalid-feedback">
+                        Please provide a valid email address.
+                    </div>
                 </div>
 
-                <div>
-                    <label>Encrypted Message</label>
-                    <textarea name="message" rows="5" required></textarea>
+                <div class="mb-3">
+                    <label for="message" class="form-label">Encrypted Message</label>
+                    <textarea class="form-control" id="message" name="message" rows="5" placeholder="Your message here..." required></textarea>
+                    <div class="invalid-feedback">
+                        Please provide a message.
+                    </div>
                 </div>
 
-                <button type="submit">UPLOAD DATA</button>
+                <button type="submit" class="btn btn-custom">UPLOAD DATA</button>
             </form>
         </section>
     </main>
@@ -63,5 +76,7 @@
     </footer>
 
     <script src="script.js"></script>
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

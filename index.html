@@ -1,19 +1,24 @@
 <!-- image from unsplash for now, will replace with personal art -->
-<!-- image from unsplash for now, will replace with personal art -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shadow Canvas | Goth Art Gallery</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom Styles -->
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Canvas Background - Cyberpunk Particle Effect -->
+    <canvas id="matrix-canvas"></canvas>
+
     <header>
         <nav>
             <div class="nav-brand">SHADOW CANVAS</div>
-            <button class="hamburger" id="hamburger">
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -30,24 +35,151 @@
     </header>
 
     <main>
-
+        <!-- Bootstrap Container for responsive layout -->
+        <div class="container-fluid">
           <section id="Intro">
 
          <h1>h3x-punk dark dy5t0p1a</h1>
-         <p> x1can0 art Gall3ry</p>
-         <img src="images/mural1.jpg" alt="Local dy5t0p1a mural art" class="home-hero-img">
+         <p>x1can0 art Gall3ry</p>
+
+         <!-- SVG Logo: Mi Vida Loca + Cyberpunk Fusion -->
+         <svg class="cyber-logo" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+            <!-- Cyberpunk hexagon design with Mi Vida Loca three dots -->
+            <defs>
+                <linearGradient id="neonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#ff0000;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#8b0000;stop-opacity:1" />
+                </linearGradient>
+                <filter id="glow">
+                    <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+                    <feMerge>
+                        <feMergeNode in="coloredBlur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                </filter>
+                <filter id="strongGlow">
+                    <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                    <feMerge>
+                        <feMergeNode in="coloredBlur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                </filter>
+            </defs>
+
+            <!-- Hexagon shape (cyber element) -->
+            <polygon points="100,15 145,42.5 145,87.5 100,115 55,87.5 55,42.5"
+                     fill="none"
+                     stroke="url(#neonGrad)"
+                     stroke-width="3"
+                     filter="url(#glow)">
+                <animate attributeName="stroke-opacity"
+                         values="1;0.4;1"
+                         dur="2.5s"
+                         repeatCount="indefinite"/>
+            </polygon>
+
+            <!-- Crosshairs (targeting/precision) -->
+            <line x1="100" y1="42.5" x2="100" y2="87.5"
+                  stroke="#ff0000"
+                  stroke-width="1.5"
+                  opacity="0.6"
+                  filter="url(#glow)"/>
+            <line x1="70" y1="65" x2="130" y2="65"
+                  stroke="#ff0000"
+                  stroke-width="1.5"
+                  opacity="0.6"
+                  filter="url(#glow)"/>
+
+            <!-- MI VIDA LOCA - Three Dots in Triangle Formation -->
+            <!-- Hospital, Prison, Cemetery -->
+
+            <!-- Top Dot (The Peak of the Triangle) -->
+            <circle cx="100" cy="50" r="5" fill="#ff0000" filter="url(#strongGlow)">
+                <animate attributeName="r"
+                         values="5;7;5"
+                         dur="2s"
+                         repeatCount="indefinite"/>
+                <animate attributeName="opacity"
+                         values="1;0.7;1"
+                         dur="2s"
+                         repeatCount="indefinite"/>
+            </circle>
+
+            <!-- Bottom Left Dot -->
+            <circle cx="85" cy="75" r="5" fill="#ff0000" filter="url(#strongGlow)">
+                <animate attributeName="r"
+                         values="5;7;5"
+                         dur="2s"
+                         begin="0.66s"
+                         repeatCount="indefinite"/>
+                <animate attributeName="opacity"
+                         values="1;0.7;1"
+                         dur="2s"
+                         begin="0.66s"
+                         repeatCount="indefinite"/>
+            </circle>
+
+            <!-- Bottom Right Dot -->
+            <circle cx="115" cy="75" r="5" fill="#ff0000" filter="url(#strongGlow)">
+                <animate attributeName="r"
+                         values="5;7;5"
+                         dur="2s"
+                         begin="1.33s"
+                         repeatCount="indefinite"/>
+                <animate attributeName="opacity"
+                         values="1;0.7;1"
+                         dur="2s"
+                         begin="1.33s"
+                         repeatCount="indefinite"/>
+            </circle>
+
+            <!-- Subtle connecting lines between dots (optional - representing the cycle) -->
+            <line x1="100" y1="50" x2="85" y2="75"
+                  stroke="#8b0000"
+                  stroke-width="0.5"
+                  opacity="0.3"/>
+            <line x1="100" y1="50" x2="115" y2="75"
+                  stroke="#8b0000"
+                  stroke-width="0.5"
+                  opacity="0.3"/>
+            <line x1="85" y1="75" x2="115" y2="75"
+                  stroke="#8b0000"
+                  stroke-width="0.5"
+                  opacity="0.3"/>
+         </svg>
+
+         <!-- Custom Carousel (enhanced beyond Bootstrap's basic carousel for better UX) -->
+         <div class="carousel-container">
+            <div class="carousel-slide">
+                <img src="images/mural_calaveras.jpg" alt="Day of the Dead street art mural with papel picado" class="carousel-img active">
+                <img src="images/studio_space.jpg" alt="Shadow Canvas studio workspace with airbrush equipment" class="carousel-img">
+                <img src="images/gits_shoes_1.jpg" alt="Custom Ghost in the Shell x Blade Runner 2049 fusion airbrushed shoes" class="carousel-img">
+                <img src="images/cper.jpg" alt="Custom Cyberpunk Edgerunners airbrushed shoes" class="carousel-img">
+            </div>
+
+            <!-- Navigation Arrows -->
+            <button class="carousel-btn prev" id="carousel-prev" aria-label="Previous slide">‹</button>
+            <button class="carousel-btn next" id="carousel-next" aria-label="Next slide">›</button>
+
+            <!-- Dots Indicator -->
+            <div class="carousel-dots">
+                <span class="dot active" data-slide="0" role="button" aria-label="Slide 1"></span>
+                <span class="dot" data-slide="1" role="button" aria-label="Slide 2"></span>
+                <span class="dot" data-slide="2" role="button" aria-label="Slide 3"></span>
+                <span class="dot" data-slide="3" role="button" aria-label="Slide 4"></span>
+            </div>
+         </div>
         </section>
 
-        <section id="still thinking...">
-            <!-- still thinking what to add here -->
-        </section>
-
-        <section id="chuco-inspiration">
-            <!-- local influential artists -->
+       <section id="chuco-inspiration">
+        <div class="container">
+             <h2>The Hexagon and Three Dots</h2>
+                 <p>The hexagon used in the alias "h3x-punk" gives homage to my predecessors from a time where ready-to-go hacking tools were non-existent. They broke codes with bare-bone hexadecimal.</p>
+                 <p>The three dots in Xicano culture represent the three ending points of the crazy life experienced growing up in the streets of the Lower Valley side of El Paso: prison, hospital, cemetery. Not all dots have a checkpoint saved, nor the chance for a new playthrough.</p>
+                 <!-- local influential artists -->
             <h2>Inspiration: Roots, Darkness and Cyberpunk Dystopia</h2>
-            <p>Shadow Canvas merges the rebellious spirit of cyberpunk with the raw energy of psychobilly and goth asthetic mixed with Xicano culture's colorful pallet, creating a mix of dark, neon and colorful aesthetic sanctuary for artists who refuse to conform. This gallery celebrates the intersection of digital dystopia, Xicanismo and vintage underground culture, where neon bleeds into shadow and ancient imagery collides with futuristic chaos.</p>
-
-            <p>Rooted in the vibrant El Paso art scene, we draw inspiration from the border's unique cultural fusion where pre-Colombian indigenous roots  street art and a strong underground goth community, providing the perfect receipe for inspiration and for exploring themes of identity, resistance, and transformation in the digital age.</p>
+                 <p>Shadow Canvas merges the rebellious spirit of cyberpunk with the raw energy of psychobilly and goth aesthetic mixed with Xicano culture's colorful palette, creating a dark, neon, and colorful aesthetic sanctuary for artists who refuse to conform. This gallery celebrates the intersection of digital dystopia, Xicanismo, and vintage underground culture, where neon bleeds into shadow and ancient imagery collides with futuristic chaos.</p>
+                 <p>Rooted in the vibrant El Paso art scene, we draw inspiration from the border's unique cultural fusion of pre-Columbian indigenous roots, street art, and a strong underground goth community, providing the perfect recipe for exploring themes of identity, resistance, and transformation in the digital age.</p>
 
             <h3>El Paso Artists Who Inspire Us</h3>
             <ul>
@@ -55,25 +187,23 @@
                 <li>Francella Baca - Self-taught contemporary artist exploring identity, indigenous roots, and border culture</li>
                 <li>Babak Tavakoli - Visual artist pushing boundaries with mixed media and bold concepts</li>
             </ul>
+            </div>
         </section>
+        </div>
     </main>
 
     <footer>
-        <!-- Contact/social links -->
+        <p>&copy; 2026 Shadow Canvas Archive</p>
+        <p>Music: <a href="https://inaudio.org/track/monsters-within-dark-synth/">"Monsters Within"</a> by <a href="https://inaudio.org/category/music/">MOKKA / InAudio</a> (Free License)</p>
     </footer>
 
-<p>
-  Music: <a href="https://inaudio.org/track/monsters-within-dark-synth/">"Monsters Within"</a>
-  by <a href="https://inaudio.org/category/music/">MOKKA / InAudio</a>
-  (Free License)
-</p>
-
     <audio id="bg-music" loop>
-    <source src="music/MokkaMusic-Monsters-Within-watermark.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-</audio>
+        <source src="music/MokkaMusic-Monsters-Within-watermark.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 
-<script src="script.js"></script>
-
+    <script src="script.js"></script>
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

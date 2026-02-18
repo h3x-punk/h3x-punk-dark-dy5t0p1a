@@ -294,7 +294,7 @@ transition: filter 0.3s ease;
     height: 100%;
     object-fit: cover;
     opacity: 0;
-    transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out, filter 0.3s ease;
     border: 3px solid var(--blood-red);
     box-shadow: 0 0 20px rgba(139, 0, 0, 0.5);
     filter: brightness(50%) contrast(120%) saturate(90%) sepia(20%);
@@ -304,7 +304,7 @@ transition: filter 0.3s ease;
     opacity: 1;
 }
 
-.carousel-img:hover {
+.carousel-img.active:hover {
     filter: brightness(90%) contrast(110%) saturate(100%) sepia(0%);
 }
 

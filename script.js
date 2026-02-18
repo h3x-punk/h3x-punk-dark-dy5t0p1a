@@ -368,5 +368,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Start auto-slide on page load
+    showSlide(0);
     startAutoSlide();
 });

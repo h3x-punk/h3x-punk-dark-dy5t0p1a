@@ -238,6 +238,16 @@ if (loginForm) {
 
 /*
  * Carousel Functionality
+ *
+ * FIX: showSlide() previously removed .active from all images instantly,
+ * causing a hard cut instead of a crossfade. The new approach:
+ *   1. Bring incoming slide on top (z-index 2) and add .active to fade it in
+ *   2. After the CSS transition completes (500ms), remove .active from the
+ *      outgoing slide and reset z-index — creating a true crossfade overlap.
+ *
+ * Pair with CSS:
+ *   .carousel-img         { z-index: 1; }
+ *   .carousel-img.active  { z-index: 2; }
  */
 document.addEventListener('DOMContentLoaded', () => {
     const carouselImages = document.querySelectorAll('.carousel-img');
@@ -250,12 +260,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentSlide = 0;
     const totalSlides = carouselImages.length;
     let autoSlideInterval;
+    let isTransitioning = false; // Guard against rapid clicks mid-transition
 
-    // Function to show specific slide
+    // Function to show specific slide with true crossfade
     function showSlide(n) {
-        // Remove active class from all images and dots
-        carouselImages.forEach(img => img.classList.remove('active'));
-        dots.forEach(dot => dot.classList.remove('active'));
+        if (isTransitioning) return; // Prevent overlapping transitions
 
         // Handle wrapping
         if (n >= totalSlides) {
@@ -266,9 +275,31 @@ document.addEventListener('DOMContentLoaded', () => {
             currentSlide = n;
         }
 
-        // Add active class to current slide and dot
-        carouselImages[currentSlide].classList.add('active');
+        const outgoing = document.querySelector('.carousel-img.active');
+        const incoming = carouselImages[currentSlide];
+
+        // Update dots immediately
+        dots.forEach(dot => dot.classList.remove('active'));
         dots[currentSlide].classList.add('active');
+
+        // Same slide — nothing to do
+        if (outgoing === incoming) return;
+
+        isTransitioning = true;
+
+        // Layer incoming on top and fade it in
+        incoming.style.zIndex = 2;
+        incoming.classList.add('active');
+
+        // After transition completes, clean up outgoing slide
+        setTimeout(() => {
+            if (outgoing) {
+                outgoing.classList.remove('active');
+                outgoing.style.zIndex = '';
+            }
+            incoming.style.zIndex = '';
+            isTransitioning = false;
+        }, 500); // Must match CSS: transition: opacity 0.5s
     }
 
     // Next slide
@@ -296,7 +327,7 @@ document.addEventListener('DOMContentLoaded', () => {
         nextBtn.addEventListener('click', () => {
             nextSlide();
             stopAutoSlide();
-            startAutoSlide(); // Restart auto-slide after manual navigation
+            startAutoSlide();
         });
     }
 
@@ -353,13 +384,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function handleSwipe() {
             if (touchEndX < touchStartX - 50) {
-                // Swipe left
                 nextSlide();
                 stopAutoSlide();
                 startAutoSlide();
             }
             if (touchEndX > touchStartX + 50) {
-                // Swipe right
                 prevSlide();
                 stopAutoSlide();
                 startAutoSlide();

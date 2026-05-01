@@ -217,7 +217,7 @@ text-shadow: 0 0 20px var(--neon-accent);
     }
 }
 
-#Intro img {
+#Intro img:not(.carousel-img) {
 display: block;
 margin: 0 auto;
 border: 3px solid var(--blood-red);
@@ -235,7 +235,7 @@ transition: filter 0.3s ease;
 }
 
 @media (max-width: 768px) {
-    #Intro img,
+    #Intro img:not(.carousel-img),
     .home-hero-img {
         max-width: 100% !important;
         margin: 1rem auto;
@@ -382,7 +382,7 @@ transition: filter 0.3s ease;
     max-width: 300px !important;
 }
 
-#Intro img:hover {
+#Intro img:not(.carousel-img):hover {
 filter: brightness(90%) contrast(110%) saturate(100%) sepia(0%);
 }
 

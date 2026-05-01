@@ -1,5 +1,4 @@
 /* Shadow Canvas - Goth Art Gallery Styles */
-/* Shadow Canvas - Goth Art Gallery Styles */
 
 :root {
     --blood-red: #8b0000;
@@ -298,11 +297,9 @@ transition: filter 0.3s ease;
     border: 3px solid var(--blood-red);
     box-shadow: 0 0 20px rgba(139, 0, 0, 0.5);
     filter: brightness(50%) contrast(120%) saturate(90%) sepia(20%);
-}
-
-.carousel-img {
     z-index: 1;
 }
+
 .carousel-img.active {
     z-index: 2;
     opacity: 1;

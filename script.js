@@ -1,9 +1,3 @@
-/*I figured I had time to experiment with JavaScript a bit
- * The eventlistener is actively listening for mouse movements
- * Dynamic DOM Manipulation creates a new <div> with every mouse movement allowing the trail to follow the cursor
- * Mapping of X and Y helps create the trail illusion as well as Memory Management and its 500ms time limit
- */
-
 /*
  * CANVAS ANIMATION: Matrix-style falling particles
  * This creates a cyberpunk background effect using HTML5 Canvas
@@ -239,11 +233,10 @@ if (loginForm) {
 /*
  * Carousel Functionality
  *
- * FIX: showSlide() previously removed .active from all images instantly,
- * causing a hard cut instead of a crossfade. The new approach:
+ * showSlide() uses a crossfade approach:
  *   1. Bring incoming slide on top (z-index 2) and add .active to fade it in
  *   2. After the CSS transition completes (500ms), remove .active from the
- *      outgoing slide and reset z-index — creating a true crossfade overlap.
+ *      outgoing slide — creating a true crossfade overlap instead of a hard cut.
  *
  * Pair with CSS:
  *   .carousel-img         { z-index: 1; }
@@ -260,13 +253,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentSlide = 0;
     const totalSlides = carouselImages.length;
     let autoSlideInterval;
-    let isTransitioning = false; // Guard against rapid clicks mid-transition
+    let isTransitioning = false;
 
-    // Function to show specific slide with true crossfade
     function showSlide(n) {
-        if (isTransitioning) return; // Prevent overlapping transitions
+        if (isTransitioning) return;
 
-        // Handle wrapping
         if (n >= totalSlides) {
             currentSlide = 0;
         } else if (n < 0) {
@@ -278,20 +269,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const outgoing = document.querySelector('.carousel-img.active');
         const incoming = carouselImages[currentSlide];
 
-        // Update dots immediately
         dots.forEach(dot => dot.classList.remove('active'));
         dots[currentSlide].classList.add('active');
 
-        // Same slide — nothing to do
         if (outgoing === incoming) return;
 
         isTransitioning = true;
 
-        // Layer incoming on top and fade it in
         incoming.style.zIndex = 2;
         incoming.classList.add('active');
 
-        // After transition completes, clean up outgoing slide
         setTimeout(() => {
             if (outgoing) {
                 outgoing.classList.remove('active');
@@ -299,7 +286,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             incoming.style.zIndex = '';
             isTransitioning = false;
-        }, 500); // Must match CSS: transition: opacity 0.5s
+        }, 500);
     }
 
     // Next slide
@@ -327,7 +314,7 @@ document.addEventListener('DOMContentLoaded', () => {
         nextBtn.addEventListener('click', () => {
             nextSlide();
             stopAutoSlide();
-            startAutoSlide();
+            startAutoSlide(); // Restart auto-slide after manual navigation
         });
     }
 
@@ -384,11 +371,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function handleSwipe() {
             if (touchEndX < touchStartX - 50) {
+                // Swipe left
                 nextSlide();
                 stopAutoSlide();
                 startAutoSlide();
             }
             if (touchEndX > touchStartX + 50) {
+                // Swipe right
                 prevSlide();
                 stopAutoSlide();
                 startAutoSlide();
